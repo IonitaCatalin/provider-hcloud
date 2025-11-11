@@ -9,16 +9,24 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/controller"
 
-	resource "github.com/crossplane/upjet-provider-template/internal/controller/cluster/null/resource"
-	providerconfig "github.com/crossplane/upjet-provider-template/internal/controller/cluster/providerconfig"
+	network "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/hcloud/network"
+	server "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/hcloud/server"
+	route "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/network/route"
+	subnet "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/network/subnet"
+	providerconfig "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/providerconfig"
+	networkserver "github.com/IonitaCatalin/provider-hcloud/internal/controller/cluster/server/network"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.Setup,
+		network.Setup,
+		server.Setup,
+		route.Setup,
+		subnet.Setup,
 		providerconfig.Setup,
+		networkserver.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err
@@ -31,8 +39,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 // the supplied manager gated.
 func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.SetupGated,
+		network.SetupGated,
+		server.SetupGated,
+		route.SetupGated,
+		subnet.SetupGated,
 		providerconfig.SetupGated,
+		networkserver.SetupGated,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err
