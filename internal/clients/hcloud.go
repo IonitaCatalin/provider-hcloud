@@ -50,6 +50,12 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
+		const (
+			keyToken        = "token"
+			keyEndpoint     = "endpoint"
+			keyPollInterval = "poll_interval"
+		)
+
 		// Set credentials in Terraform provider configuration.
 		ps.Configuration = map[string]any{
       "token":         creds[keyToken],

@@ -13,7 +13,7 @@ TERRAFORM_VERSION_VALID := $(shell [ "$(TERRAFORM_VERSION)" = "`printf "$(TERRAF
 export TERRAFORM_PROVIDER_SOURCE ?= hetznercloud/hcloud
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/hetznercloud/terraform-provider-hcloud
 export TERRAFORM_PROVIDER_VERSION ?= 1.56.0
-export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= https://github.com/hetznercloud/terraform-provider-hcloud/releases/download/v1.56.0
+export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-hcloud
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://releases.hashicorp.com/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_NATIVE_PROVIDER_BINARY ?= https://releases.hashicorp.com/terraform-provider-hcloud/1.56.0/
 export TERRAFORM_DOCS_PATH ?= docs/
